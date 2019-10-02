@@ -1,0 +1,109 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the navbar.
+// -----------------------------------------------------------------------------
+
+// disables all animation on screen resize (particularly navbar collapse animation on resize)
+/* stylelint-disable */
+// body.stop-transitions * {
+//   transition: none !important;
+// }
+/* stylelint-enable */
+
+$navbar-bgc: #fff;
+$nav-link-responsive-bg-color: $light-gray;
+$nav-link-hover-bg-color: $off-white;
+
+.mobile-nav-display {
+  @include flex-space-between-children;
+}
+
+.brand-logo,
+.navbar-toggle {
+  font-size: 1.875rem;
+}
+
+.navbar {
+  position: relative;
+  background-color: $navbar-bgc;
+  padding: 1rem;
+
+  &-toggle {
+    color: $primary-color;
+    cursor: pointer;
+    background-color: inherit;
+    border: 0;
+
+    @include on-event {
+      color: tint($primary-color, 35%);
+    }
+  }
+
+  &-submenu {
+    position: absolute;
+    right: 0;
+    left: 0;
+    transform: translateY(-20px);
+    transition: all 0.35s ease-in;
+    visibility: hidden;
+    opacity: 0;
+    list-style-type: none;
+    background-color: $navbar-bgc;
+    padding: 15px;
+  }
+
+  & &-active {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  li { text-align: center; }
+
+  li + li { margin-top: 1.3rem; }
+
+  &-link {
+    display: block;
+    font-size: 1.5625rem;
+    background-color: $nav-link-responsive-bg-color;
+    padding: 10px;
+    border-radius: 12px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .mobile-nav-display { display: initial; }
+
+  .navbar {
+    @include flex-space-between-children;
+    padding: 2.6875rem 6%;
+    margin: 0 auto;
+
+    &-toggle { display: none; }
+
+    & &-active,
+    &-submenu {
+      display: flex;
+      position: initial;
+      transform: none;
+      transition: none;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    & &-active { margin-top: 0; }
+
+    &-link {
+      background-color: $navbar-bgc;
+
+      @include on-event {
+        background-color: $nav-link-hover-bg-color;
+      }
+    }
+
+    li + li,
+    li:first-of-type {
+      margin: 0 1rem;
+    }
+  }
+}

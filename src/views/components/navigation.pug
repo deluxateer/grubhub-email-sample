@@ -1,0 +1,18 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to navigation menus/aids.
+//- -----------------------------------------------------------------------------
+
+//- Generates navlinks (li + a) with icons in the text
+//- @param {String} url - URL that the link points to
+//- @param {String} iconClasses - CSS classes for selecting the correct fontawesome icon
+mixin nav-items-icons(url, iconClasses)
+  li
+    a.nav-link(href=url) #[i(class=iconClasses)]
+
+//- generic social media links
+//- @param {Array} navItems - data for each social media link you want to include
+mixin social-media-nav(navItems)
+  nav.social-media-nav
+    ul
+      each item in navItems
+        +nav-items-icons(item.url, item.icon)

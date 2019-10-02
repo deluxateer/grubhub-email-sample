@@ -1,0 +1,27 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all application-wide Pug mixins.
+//- -----------------------------------------------------------------------------
+
+//- outputs duplicate elements without explicitly writing them out
+//- @param {Number} count - the total number of elements desired
+//- @example making 10 paragraph elements
+//-   +loop(10)
+//-     p This will appear 10 times
+mixin loop(count)
+  - let n = 0
+  while n < count
+    block
+    - n++
+
+//- Returns URL to an image based on its path
+//- @param {String} path - image path
+//- @param {String} altText - text for the alt attribute
+//- @param {Boolean} lazyload [true] - if lazyloading is desired, it will use a data-attribute instead of src
+//- @param {String} base [baseURL] - base URL
+//- @require baseURL
+mixin image(path, altText='', lazyload=false, base=baseURL)
+  - const fullPath = `${base}img/${path}`;
+  if lazyload
+    img(data-lazy=fullPath alt=altText)
+  else
+    img(src=fullPath alt=altText)

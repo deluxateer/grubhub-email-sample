@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+footer {
+  @include text-color-bgc(shade($primary-color, 20));
+  
+  padding: 25px 0;
+
+  a {
+    font-weight: bold;
+    color: $secondary-color;
+
+    @include on-event {
+      color: tint($secondary-color, 35%);
+    }
+  }
+}
+
+.disclaimer {
+  font-size: 0.7rem;
+  margin-bottom: 12px;
+}
+
+.site-info {
+  @include flex-space-between-children;
+
+  a { padding: 10px 0; }
+}
+

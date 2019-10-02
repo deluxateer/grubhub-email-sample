@@ -1,0 +1,16 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to cards.
+//- -----------------------------------------------------------------------------
+
+//- Generates a card with an icon, title, and text (pargraphs)
+//- @param {String} cardContent.icon - classlist for a fontawesome icon
+//- @param {String} title - card title
+//- @param {Array} content - all strings to be rendered as paragraphs
+//- @require baseURL
+mixin card(cardContent)
+  .card.card-shadow
+    .card-content
+      i.card-icon(class=cardContent.iconClasses)
+      h3.card-title= cardContent.title
+      each paragraphItem in cardContent.content
+        p= paragraphItem

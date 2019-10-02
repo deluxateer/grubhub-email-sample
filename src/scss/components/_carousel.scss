@@ -1,0 +1,81 @@
+// -----------------------------------------------------------------------------
+// This file contains all generic styles related to carousels.
+// -----------------------------------------------------------------------------
+
+$carousel-height: 600px !default;
+$carousel-width: 90% !default;
+$track-transition: transform 0.45s ease-in !default;
+$indicator-width: 15px !default;
+$indicator-height: 15px !default;
+$indicator-color: hsla(0, 0, 0, 0.3) !default;
+$indicator-color-current: opacify($indicator-color, 0.45) !default;
+
+.carousel {
+  position: relative;
+  height: $carousel-height;
+  width: $carousel-width;
+  margin: 0 auto;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  height: 100%;
+}
+
+.carousel-track {
+  position: relative;
+  transition: $track-transition;
+  list-style-type: none;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+
+  &-left { left: -30px; }
+
+  &-right { right: -30px; }
+
+  @media screen and (min-width: breakpoint('medium')) {
+    &-left { left: -50px; }
+
+    &-right { right: -50px; }
+  }
+}
+
+.carousel-nav {
+  @include flex-center-children;
+  padding: 15px 10px;
+}
+
+.carousel-indicator {
+  height: $indicator-height;
+  width: $indicator-width;
+  cursor: pointer;
+  background: $indicator-color;
+  border: 0;
+  border-radius: 50%;
+  margin: 0 10px;
+
+  &-current { background-color: $indicator-color-current; }
+}

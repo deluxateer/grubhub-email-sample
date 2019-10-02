@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to cards.
+// -----------------------------------------------------------------------------
+
+.card {
+  @include text-color-bgc(#fff, $text-color);
+  
+  padding: 2rem;
+  border-radius: 15px;
+
+  &-content {
+    @include flex-center-children;
+  
+    flex-direction: column;
+  
+  }
+
+  &-icon {
+    color: $primary-color;
+    margin-bottom: 1rem;
+  }
+
+  &-title {
+    margin-bottom: 0.5rem;
+  }
+
+  // Modifiers
+  &-shadow {
+    box-shadow: 0 10px 20px hsla(0, 0%, 0%, 0.19), 0 6px 6px hsla(0, 0%, 0%, 0.23);
+  }
+}
+

@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to navigation menus/aids.
+// -----------------------------------------------------------------------------
+
+.social-media-nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.social-media-nav li {
+  font-size: 2rem;
+
+  + li { margin-left: 1.3rem; }
+}

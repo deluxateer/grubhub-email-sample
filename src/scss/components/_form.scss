@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains all generic styles related to forms.
+// -----------------------------------------------------------------------------
+
+.form-item {
+  i { margin-right: 1rem; }
+
+  label {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 0;
+    border-radius: 0.15rem;
+    outline: none;
+    margin-bottom: 0.9rem;
+  }
+}

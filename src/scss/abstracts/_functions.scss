@@ -1,0 +1,66 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+/// lightens a color less severly than lighten()
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// darkens a color less severly than darken()
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+/// sets text color to black or white depending on the background color
+/// @param {Color} $bgc - background color
+/// @param {Color} $on-light [#000] - text color to use for light backgrounds
+/// @return {Color}
+@function contrast-text($bgc, $on-light: #000) {
+  @if (lightness($bgc) > 50) {
+    @return $on-light;
+  } @else {
+    @return #FFF;
+  }
+}
+
+/// Native `url(..)` function wrapper
+/// @param {String} $base - base URL for the asset
+/// @param {String} $type - asset type folder (e.g. `fonts/`)
+/// @param {String} $path - asset path
+/// @return {Url}
+@function asset($base, $type, $path) {
+  @return url($base + $type + $path);
+}
+
+/// Returns URL to an image based on its path
+/// @param {String} $path - image path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function image($path, $base: $base-url) {
+  @return asset($base, 'img/', $path);
+}
+
+/// Returns URL to a font based on its path
+/// @param {String} $path - font path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function font($path, $base: $base-url) {
+  @return asset($base, 'fonts/', $path);
+}
+
+/// friendlier function to work with breakpoints
+/// @param {String} $desired-breakpoint - the breakpoint that will be used
+/// @return {String}
+@function breakpoint($desired-breakpoint) {
+  @return map-get($breakpoints, $desired-breakpoint);
+}
+

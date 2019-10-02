@@ -1,0 +1,26 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to forms.
+//- -----------------------------------------------------------------------------
+
+mixin formBtn(btnData)
+  button&attributes(btnData.attributeData)= btnData.text
+
+mixin form(formData)
+  -
+    const {
+      attributeData,
+      button,
+      items,
+    } = formData
+  form&attributes(attributeData)
+    each itemData, itemName in items
+      - const { labelText, tag, attributeData } = itemData
+      - const { id } = attributeData
+      .form-item(class= `form-${itemName}`)
+        label(for=id)!= labelText
+        if tag === 'input'
+          input&attributes(attributeData)
+        if tag === 'textarea'
+          textarea&attributes(attributeData)
+    if button
+      +formBtn(button)

@@ -1,0 +1,24 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to the generic base page of the site/application.
+//- The intention is to construct a generic webpage with a navbar, hero, content, footer.
+//- Vertical page flow.
+//- -----------------------------------------------------------------------------
+
+include ../abstracts/variables
+include ../abstracts/mixins
+include layout/head
+include ../components/navigation
+
+block localVariables
+
+doctype html
+html(lang='en')
+  +head(globalHeadProps, localHeadProps)
+  body
+    block content
+      header
+        block header
+      main
+        block main
+      block footer
+        include layout/footer

@@ -1,0 +1,59 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// helper that sets background color and text color (black | white) for you
+/// @author Deluxateer
+/// @param {Color} $bgc - background color
+/// @param {Color} $on-light [#000] - text color to use for light backgrounds
+@mixin text-color-bgc($bgc, $on-light: #000) {
+  color: contrast-text($bgc, $on-light);
+  background-color: $bgc;
+}
+
+/// Event wrapper
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+  #{$context} & {
+    @content;
+  }
+}
+
+/// Makes into a flex container and fully centers its children
+/// @author Deluxateer
+@mixin flex-center-children {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/// Makes into a flex container and centers its children
+/// with space between on the main axis
+/// @author Deluxateer
+@mixin flex-space-between-children {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

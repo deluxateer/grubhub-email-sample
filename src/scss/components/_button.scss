@@ -1,0 +1,138 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// It is intended to work for a tags and button tags.
+// Most of the architecture is inspired from Hugo Giraudel
+// Source: https://hugogiraudel.com/2014/03/03/another-sass-button-library/
+// -----------------------------------------------------------------------------
+// configuration
+$btn-name: 'btn' !default;
+$btn-size-ratio: 1.2 !default;
+$btn-hover: saturate 25% !default;
+// $btn-border: darken 20% !default;
+$btn-border: false;
+$btn-bgc-default: hsl(0, 0%, 34%);
+$btn-background: (
+  'primary': $primary-color,
+  'secondary': $secondary-color,
+  'success': hsl(121, 32%, 40%),
+  'danger': hsl(1, 45%, 50%),
+  'warning': hsl(38, 46%, 54%),
+  'info': hsl(200, 50%, 45%)
+) !default;
+
+/// evaluates button color (bg, font, border)
+/// @param {Color} $bgc - background color of the button
+@mixin button-color($bgc) {
+  @include text-color-bgc($bgc);
+
+  &:hover,
+  &:focus {
+    color: contrast-text($bgc);
+    background: call(get-function(nth($btn-hover, 1)), $bgc, nth($btn-hover, 2));
+  }
+
+  &:active {
+    background: call(get-function(shade), $bgc, nth($btn-hover, 2));
+    box-shadow: none;
+  }
+
+  @if $btn-border != false {
+    border-color: call(get-function(nth($btn-border, 1)), $bgc, nth($btn-border, 2));
+  }
+}
+
+%#{btn-name} {
+  // default styles
+  @include button-color($btn-bgc-default);
+  
+  display: inline-block;
+  transition: background-color 0.15s ease-in;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 1rem;
+  border: if($btn-border, 1px solid, none);
+  border-radius: 0.15em;
+  outline: none;
+  margin-bottom: 1em;
+}
+
+.#{$btn-name} {
+  @extend %#{btn-name};
+
+  // Modifiers
+  &-large {
+    font-size: 1em * $btn-size-ratio;
+    padding: 1rem 1.3rem;
+  }
+
+  &-small {
+    font-size: 1em / $btn-size-ratio;
+    padding: 0.5rem;
+  }
+
+  &-bold { font-weight: bold; }
+
+  &-upper { text-transform: uppercase; }
+
+  &-block {
+    display: block;
+    width: 100%;
+  }
+
+  &-shadow {
+    box-shadow: 0 10px 20px hsla(0, 0%, 0%, 0.19), 0 6px 6px hsla(0, 0%, 0%, 0.23);
+  }
+
+  // Color schemes
+  @each $key, $value in $btn-background {
+    &-#{$key} {
+      @include button-color($value);
+    }
+  }
+}
+
+// --- Specialty Buttons ---
+
+// Scroll Back To the Top Button
+.back-to-top-#{$btn-name} {
+  @extend %#{btn-name};
+
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+  z-index: 5;
+  background-color: transparentize($primary-color, 0.3);
+  border: 1px solid;
+  margin: 0;
+}
+
+.#{$btn-name}-enter { animation: enter 0.5s both; }
+
+.#{$btn-name}-exit { animation: exit 0.5s both; }
+
+@keyframes enter {
+  from {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes exit {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  
+  to {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+}

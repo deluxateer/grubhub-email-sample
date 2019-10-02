@@ -1,0 +1,23 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to carousels.
+//- Heavily inspired from Kevin Powell
+//- Source: https://www.youtube.com/watch?v=VYsVOamdB0g
+//- -----------------------------------------------------------------------------
+
+//- markup for carousel with variable slide content
+//- @param {Array} carouselItems - array containing content info for each slide
+mixin carousel(carouselItems)
+  .carousel
+    button.carousel-button.carousel-button-left
+      i.fas.fa-chevron-left.fa-3x
+    .carousel-track-container
+      ul.carousel-track
+        block
+        //- each item, index in testimonialItems
+        //-   li.carousel-slide
+        //-     +image(item.img, item.alt)
+    button.carousel-button.carousel-button-right
+      i.fas.fa-chevron-right.fa-3x
+    .carousel-nav
+      +loop(carouselItems.length)
+        button.carousel-indicator

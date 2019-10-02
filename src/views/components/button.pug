@@ -1,0 +1,16 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all markup related to the button component.
+//- -----------------------------------------------------------------------------
+
+//- markup for button with button tag
+//- @param {String} text - text for the button
+//- @param {String} classes - CSS classes to use for the button
+mixin btn(text, ...classes)
+  button(class=classes)= text
+
+//- markup for button with a tag
+//- @param {String} href - link that the tag points to
+//- @param {String} text - text for the button
+//- @param {String} classes - CSS classes to use for the button
+mixin link-btn(href, text, ...classes)
+  a(href=href, class=classes)= text

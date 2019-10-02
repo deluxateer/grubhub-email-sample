@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+html { scroll-behavior: smooth; }
+
+body { color: $text-color; }
+
+section { padding: 70px 0; }
+
+code { font-family: $code-font-stack; }
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  transition: color 0.2s ease-in;
+  color: $primary-color;
+  text-decoration: none;
+
+  @include on-event {
+    color: tint($primary-color, 35%);
+  }
+}

@@ -1,0 +1,49 @@
+//- -----------------------------------------------------------------------------
+//- This file contains all application-wide Pug variables.
+//- -----------------------------------------------------------------------------
+
+//- global head configurations
+//- @prop {String} keys - meta tag name
+//- @prop {Object} values - meta tag content
+-
+  const globalHeadProps = {
+    author: "Deluxateer",
+  };
+
+//- base url for assets (in dist)
+//- @type String
+- const baseURL = './';
+
+//- navbar items
+//- @prop {String} keys - Title for the navbar link
+//- @prop {Object} values - URL that the link points to
+-
+  const navbarItems = {
+    'About': '#about',
+    'Services': '#services',
+    'Testimonials': '#testimonials',
+    'Contact': '#contact',
+  }
+
+//- social media navitems
+//- @prop {String} keys - name of social media service
+//- @prop {Object} values - icon classes from fontawesome and url that of your social media profile
+-
+  const socialMediaItems = {
+    twitter: {
+      icon: 'fab fa-twitter',
+      url: 'http://twitter.com',
+    },
+    instagram: {
+      icon: 'fab fa-instagram',
+      url: 'http://instagram.com',
+    },
+    facebook: {
+      icon: 'fab fa-facebook-square',
+      url: 'http://facebook.com',
+    },
+    pinterest: {
+      icon: 'fab fa-pinterest',
+      url: 'http://pinterest.com',
+    },
+  }
